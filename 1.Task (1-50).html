@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<style>body{font-family:Arial;padding:20px}section{border:1px solid #999;padding:10px;margin:10px 0}table{border-collapse:collapse}td,th{border:1px solid #555;padding:4px}</style>
+</head>
+<body>
+
+
+<!-- 1 -->
+<section><h3>1. Registration → Summary</h3>
+<form id=f1><input id=f1n required><button>Go</button></form><p id=o1></p>
+<script>f1.onsubmit=e=>{e.preventDefault();o1.textContent="Hello "+f1n.value;}</script></section>
+
+<!-- 2 -->
+<section><h3>2. Login → Welcome</h3>
+<form id=f2><input required><input type=password required><button>Login</button></form><p id=o2></p>
+<script>f2.onsubmit=e=>{e.preventDefault();o2.textContent="Login Successful";}</script></section>
+
+<!-- 3 -->
+<section><h3>3. Disable Submit Until Filled</h3>
+<form id=f3><input id=i3 required><button id=b3 disabled>OK</button></form>
+<script>i3.oninput=()=>b3.disabled=!i3.value;</script></section>
+
+<!-- 4 -->
+<section><h3>4. Inline Error Message</h3>
+<form id=f4><input id=i4><small id=s4 style=color:red;display:none>Required!</small><button>Go</button></form>
+<script>f4.onsubmit=e=>{if(!i4.value){s4.style.display="inline";e.preventDefault();}}</script></section>
+
+<!-- 5 -->
+<section><h3>5. Clear Fields</h3>
+<form id=f5><input id=i5 required><button>Send</button></form>
+<script>f5.onsubmit=e=>{e.preventDefault();alert("Submitted");f5.reset();}</script></section>
+
+<!-- 6 -->
+<section><h3>6. Count Submissions</h3>
+<form id=f6><input required><button>Add</button></form>Submitted: <span id=o6>0</span>
+<script>let c6=0;f6.onsubmit=e=>{e.preventDefault();o6.textContent=++c6;}</script></section>
+
+<!-- 7 -->
+<section><h3>7. Contact Success (No Reload)</h3>
+<form id=f7><input required><button>Send</button></form><p id=o7></p>
+<script>f7.onsubmit=e=>{e.preventDefault();o7.textContent="Message Sent";}</script></section>
+
+<!-- 8 -->
+<section><h3>8. Highlight required fields</h3>
+<style>#f8 input:required{border:2px solid red;}</style>
+<form id=f8><input required><button>OK</button></form></section>
+
+<!-- 9 -->
+<section><h3>9. Live Preview</h3>
+<input id=i9 placeholder="Type"><p id=o9></p>
+<script>i9.oninput=()=>o9.textContent=i9.value;</script></section>
+
+<!-- 10 -->
+<section><h3>10. Password Confirm</h3>
+<input id=p10 type=password placeholder="Pass"><input id=c10 type=password placeholder="Confirm"><p id=o10></p>
+<script>c10.oninput=()=>o10.textContent=p10.value===c10.value?"Match":"Mismatch";</script></section>
+
+<!-- 11 -->
+<section><h3>11. Show Values in Table</h3>
+<form id=f11><input id=n11><input id=e11><button>Add</button></form>
+<table id=t11><tr><th>Name</th><th>Email</th></tr></table>
+<script>f11.onsubmit=e=>{e.preventDefault();t11.insertRow(-1).innerHTML=`<td>${n11.value}</td><td>${e11.value}</td>`;}</script></section>
+
+<!-- 12 -->
+<section><h3>12. Dashboard Layout</h3>
+<div style="display:flex">
+<div style="width:100px;background:#ddd">Sidebar</div>
+<div style="margin-left:10px">Main Area</div></div></section>
+
+<!-- 13 -->
+<section><h3>13. Show Date + Time</h3>
+<p id=o13></p><script>o13.textContent=new Date().toLocaleString();</script></section>
+
+<!-- 14 -->
+<section><h3>14. Save Settings (localStorage)</h3>
+<input id=i14><button id=b14>Save</button><p id=o14></p>
+<script>if(localStorage.s14)o14.textContent=localStorage.s14;b14.onclick=()=>{localStorage.s14=i14.value;o14.textContent=i14.value};</script></section>
+
+<!-- 15 -->
+<section><h3>15. Auto Load Settings</h3>
+<p>Loaded: <span id=o15></span></p>
+<script>o15.textContent=localStorage.s14||"No saved value";</script></section>
+
+<!-- 16 -->
+<section><h3>16. Avg Rating</h3>
+<form id=f16><input id=i16 type=number min=1 max=5 required><button>Add</button></form><p id=o16></p>
+<script>let a16=[],avg=_=>o16.textContent=(a16.reduce((x,y)=>x+y)/a16.length).toFixed(2);
+f16.onsubmit=e=>{e.preventDefault();a16.push(+i16.value);avg();};</script></section>
+
+<!-- 17 -->
+<section><h3>17. Char Count</h3>
+<textarea id=t17></textarea><p id=o17>0</p>
+<script>t17.oninput=()=>o17.textContent=t17.value.length;</script></section>
+
+<!-- 18 -->
+<section><h3>18. Disable submit if invalid</h3>
+<form id=f18><input id=i18 required><button id=b18 disabled>OK</button></form>
+<script>i18.oninput=()=>b18.disabled=!i18.checkValidity();</script></section>
+
+<!-- 19 -->
+<section><h3>19. Radio output</h3>
+<form id=f19><label><input type=radio name=r19 value=A>A</label><label><input type=radio name=r19 value=B>B</label><button>OK</button></form><p id=o19></p>
+<script>f19.onsubmit=e=>{e.preventDefault();o19.textContent=f19.r19.value;}</script></section>
+
+<!-- 20 -->
+<section><h3>20. Dashboard Card (Static)</h3>
+<div style="padding:10px;background:#eef">Total Users: 150</div></section>
+
+<!-- 21 -->
+<section><h3>21. Conditional output</h3>
+<input id=i21><p id=o21></p>
+<script>i21.oninput=()=>o21.textContent=i21.value>50?"High":"Low";</script></section>
+
+<!-- 22 -->
+<section><h3>22. Search Filter</h3>
+<input id=s22><ul id=u22><li>Apple</li><li>Banana</li><li>Cherry</li></ul>
+<script>s22.oninput=()=>u22.querySelectorAll("li").forEach(li=>li.style.display=li.textContent.toLowerCase().includes(s22.value.toLowerCase())?"block":"none");</script></section>
+
+<!-- 23 -->
+<section><h3>23. Loading on Submit</h3>
+<form id=f23><input required><button>Send</button></form><p id=o23></p>
+<script>f23.onsubmit=e=>{e.preventDefault();o23.textContent="Loading...";setTimeout(()=>o23.textContent="Done!",500);}</script></section>
+
+<!-- 24 -->
+<section><h3>24. Reset Button</h3>
+<form><input><button>Submit</button><button type=reset>Reset</button></form></section>
+
+<!-- 25 -->
+<section><h3>25. Dropdown Output</h3>
+<select id=s25><option>A</option><option>B</option></select><p id=o25></p>
+<script>s25.onchange=()=>o25.textContent=s25.value;</script></section>
+
+<!-- 26 -->
+<section><h3>26. Multi-step Form</h3>
+<div id=d26>
+<div id=p1><input id=i261><button onclick="p1.style.display='none';p2.style.display='block'">Next</button></div>
+<div id=p2 style=display:none><input id=i262><p id=o26></p><button onclick="o26.textContent=i261.value+' '+i262.value">Finish</button></div></div>
+</section>
+
+<!-- 27 -->
+<section><h3>27. Validate Step</h3>
+<input id=i271><button id=b271 disabled>NEXT</button>
+<script>i271.oninput=()=>b271.disabled=!i271.value;</script></section>
+
+<!-- 28 -->
+<section><h3>28. Add Rows Dynamic</h3>
+<form id=f28><input id=n28><button>Add</button></form>
+<table id=t28><tr><th>Name</th></tr></table>
+<script>f28.onsubmit=e=>{e.preventDefault();t28.insertRow(-1).innerHTML=`<td>${n28.value}</td>`;}</script></section>
+
+<!-- 29 -->
+<section><h3>29. Edit Row</h3>
+<p>Click row to edit</p><table id=t29><tr><th>Name</th></tr><tr><td>John</td></tr></table>
+<input id=i29><button id=b29>Save</button>
+<script>let tr29=null;t29.onclick=e=>{tr29=e.target.parentElement;i29.value=e.target.textContent;}
+b29.onclick=_=>tr29&&(tr29.cells[0].textContent=i29.value);</script></section>
+
+<!-- 30 -->
+<section><h3>30. Delete Row</h3>
+<table id=t30><tr><td>Item</td><td><button>X</button></td></tr></table>
+<script>t30.onclick=e=>{if(e.target.tagName=="BUTTON"&&confirm("Delete?"))e.target.parentElement.parentElement.remove();}</script></section>
+
+<!-- 31 -->
+<section><h3>31. Filter Table</h3>
+<input id=s31><table id=t31><tr><td>A</td></tr><tr><td>B</td></tr></table>
+<script>s31.oninput=()=>t31.querySelectorAll("tr").forEach(r=>r.style.display=r.textContent.toLowerCase().includes(s31.value.toLowerCase())?"":"none");</script></section>
+
+<!-- 32 -->
+<section><h3>32. Total Records</h3>
+<table id=t32><tr><td>A</td></tr><tr><td>B</td></tr></table>Total:<span id=o32></span>
+<script>o32.textContent=t32.rows.length;</script></section>
+
+<!-- 33 -->
+<section><h3>33. Auto Save</h3>
+<textarea id=t33></textarea>
+<script>t33.oninput=()=>localStorage.t33=t33.value;if(localStorage.t33)t33.value=localStorage.t33;</script></section>
+
+<!-- 34 -->
+<section><h3>34. Restore Saved</h3><p id=o34></p>
+<script>o34.textContent=localStorage.t33||"None";</script></section>
+
+<!-- 35 -->
+<section><h3>35. Notification Area</h3>
+<p id=o35></p><button onclick="o35.textContent='Notified!'">Notify</button></section>
+
+<!-- 36 -->
+<section><h3>36. Success/Error</h3>
+<button onclick="o36.textContent='Success!'">Success</button>
+<button onclick="o36.textContent='Error!'">Error</button><p id=o36></p></section>
+
+<!-- 37 -->
+<section><h3>37. Conditional Fields</h3>
+<select id=s37><option value=show>Show</option><option value=hide>Hide</option></select>
+<input id=i37>
+<script>s37.onchange=()=>i37.style.display=s37.value=="show"?"block":"none";</script></section>
+
+<!-- 38 -->
+<section><h3>38. Disable Dashboard Action</h3>
+<input id=i38 required><button id=b38 disabled>Run</button>
+<script>i38.oninput=()=>b38.disabled=!i38.value;</script></section>
+
+<!-- 39 -->
+<section><h3>39. Responsive Box</h3>
+<div style="background:#eef;padding:20px;width:100%">Resize window</div></section>
+
+<!-- 40 -->
+<section><h3>40. Mobile Layout</h3>
+<style>@media(max-width:600px){#d40{color:red}}</style>
+<p id=d40>Turns red on mobile width</p></section>
+
+<!-- 41 -->
+<section><h3>41. Active Menu Highlight</h3>
+<button onclick="m41.textContent='Active: Menu 1'">Menu 1</button>
+<button onclick="m41.textContent='Active: Menu 2'">Menu 2</button>
+<p id=m41></p></section>
+
+<!-- 42 -->
+<section><h3>42. Logout Clear</h3>
+<button onclick="localStorage.clear();alert('Logged out')">Logout</button></section>
+
+<!-- 43 -->
+<section><h3>43. Last Login Time</h3>
+<p id=o43></p><script>o43.textContent=localStorage.lastLogin||'None';localStorage.lastLogin=new Date().toLocaleString();</script></section>
+
+<!-- 44 -->
+<section><h3>44. Update Profile</h3>
+<input id=i44><p id=o44></p><button onclick="o44.textContent=i44.value">Update</button></section>
+
+<!-- 45 -->
+<section><h3>45. Widget Update</h3>
+<p id=o45>0</p><button onclick="o45.textContent=+o45.textContent+1">+1</button></section>
+
+<!-- 46 -->
+<section><h3>46. Prevent Duplicate Entries</h3>
+<form id=f46><input id=i46 required><button>Add</button></form><ul id=u46></ul>
+<script>f46.onsubmit=e=>{e.preventDefault();if([...u46.children].some(li=>li.textContent==i46.value))return alert("Duplicate");u46.innerHTML+="<li>"+i46.value+"</li>";}</script></section>
+
+<!-- 47 -->
+<section><h3>47. Summary Totals</h3>
+<p>Total Letters in "ABC": <span id=o47></span></p>
+<script>o47.textContent="ABC".length;</script></section>
+
+<!-- 48 -->
+<section><h3>48. Confirm Reset</h3>
+<button onclick="if(confirm('Reset?'))location.reload()">Reset</button></section>
+
+<!-- 49 -->
+<section><h3>49. Submission History</h3>
+<form id=f49><input id=i49><button>Save</button></form><ul id=u49></ul>
+<script>f49.onsubmit=e=>{e.preventDefault();u49.innerHTML+="<li>"+i49.value+" @ "+new Date().toLocaleTimeString()+"</li>";}</script></section>
+
+<!-- 50 -->
+<section><h3>50. Admin Dashboard Mini</h3>
+<form id=f50><input id=i50><button>Add</button></form>
+<table id=t50><tr><th>Name</th></tr></table><p>Total:<span id=o50>0</span></p>
+<script>let c50=0;f50.onsubmit=e=>{e.preventDefault();t50.insertRow(-1).innerHTML=`<td>${i50.value}</td>`;o50.textContent=++c50;}</script></section>
+
+</body>
+</html>
